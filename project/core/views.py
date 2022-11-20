@@ -1,5 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -46,13 +47,13 @@ class RegistroUsuario(FormView):
 
 
 # ########## CRUD CARRO ###########
-class ListaCarros(ListView):
+class ListaCarros(LoginRequiredMixin, ListView):
     model = models.Carro
     context_object_name = 'carros'
     template_name = 'core/carros.html'
 
 
-class CadastrarCarro(CreateView):
+class CadastrarCarro(LoginRequiredMixin, CreateView):
     model = models.Carro
     fields = '__all__'
     template_name = 'core/cadastrar_carro.html'
@@ -62,20 +63,20 @@ class CadastrarCarro(CreateView):
         return super(CadastrarCarro, self).form_valid(form)
 
 
-class VerCarro(DetailView):
+class VerCarro(LoginRequiredMixin, DetailView):
     model = models.Carro
     context_object_name = 'carro'
     template_name = 'core/carro.html'
 
 
-class EditarCarro(UpdateView):
+class EditarCarro(LoginRequiredMixin, UpdateView):
     model = models.Carro
     fields = '__all__'
     template_name = 'core/editar_carro.html'
     success_url = reverse_lazy('carros')
 
 
-class RemoverCarro(DeleteView):
+class RemoverCarro(LoginRequiredMixin, DeleteView):
     model = models.Carro
     context_object_name = 'carro'
     template_name = 'core/remover_carro.html'
@@ -83,13 +84,13 @@ class RemoverCarro(DeleteView):
 
 
 # ########## CRUD MARCA CARRO ###########
-class ListaMarcas(ListView):
+class ListaMarcas(LoginRequiredMixin, ListView):
     model = models.MarcaCarro
     context_object_name = 'marcas'
     template_name = 'core/marcas.html'
 
 
-class CadastrarMarca(CreateView):
+class CadastrarMarca(LoginRequiredMixin, CreateView):
     model = models.MarcaCarro
     fields = '__all__'
     template_name = 'core/cadastrar_marca.html'
@@ -99,14 +100,14 @@ class CadastrarMarca(CreateView):
         return super(CadastrarMarca, self).form_valid(form)
 
 
-class EditarMarca(UpdateView):
+class EditarMarca(LoginRequiredMixin, UpdateView):
     model = models.MarcaCarro
     fields = '__all__'
     template_name = 'core/editar_marca.html'
     success_url = reverse_lazy('marcas')
 
 
-class RemoverMarca(DeleteView):
+class RemoverMarca(LoginRequiredMixin, DeleteView):
     model = models.MarcaCarro
     context_object_name = 'marca'
     template_name = 'core/remover_marca.html'
