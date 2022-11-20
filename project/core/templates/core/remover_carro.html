@@ -1,0 +1,6 @@
+<a href="{% url 'carros' %}">Voltar</a>
+<form method="post">
+    {% csrf_token %}
+    <p>Você tem certeza que deseja remover o carro {{carro}}?</p>
+    <input type="submit" value="Deletar">
+</form>
