@@ -20,4 +20,14 @@ urlpatterns = [
          views.EditarCarro.as_view(), name="editar_carro"),
     path("carros/remover/<int:pk>/",
          views.RemoverCarro.as_view(), name="remover_carro"),
+
+
+    # CRUD CARROS
+    path("marcas/", views.ListaMarcas.as_view(), name="marcas"),
+    path("marcas/cadastrar/",
+         views.CadastrarMarca.as_view(), name="cadastrar_marca"),
+    path("marcas/editar/<int:pk>/",
+         views.EditarMarca.as_view(), name="editar_marca"),
+    path("marcas/remover/<int:pk>/",
+         views.RemoverMarca.as_view(), name="remover_marca"),
 ]

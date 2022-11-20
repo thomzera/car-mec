@@ -80,3 +80,34 @@ class RemoverCarro(DeleteView):
     context_object_name = 'carro'
     template_name = 'core/remover_carro.html'
     success_url = reverse_lazy('carros')
+
+
+# ########## CRUD MARCA CARRO ###########
+class ListaMarcas(ListView):
+    model = models.MarcaCarro
+    context_object_name = 'marcas'
+    template_name = 'core/marcas.html'
+
+
+class CadastrarMarca(CreateView):
+    model = models.MarcaCarro
+    fields = '__all__'
+    template_name = 'core/cadastrar_marca.html'
+    success_url = reverse_lazy('marcas')
+
+    def form_valid(self, form):
+        return super(CadastrarMarca, self).form_valid(form)
+
+
+class EditarMarca(UpdateView):
+    model = models.MarcaCarro
+    fields = '__all__'
+    template_name = 'core/editar_marca.html'
+    success_url = reverse_lazy('marcas')
+
+
+class RemoverMarca(DeleteView):
+    model = models.MarcaCarro
+    context_object_name = 'marca'
+    template_name = 'core/remover_marca.html'
+    success_url = reverse_lazy('marcas')

@@ -1,0 +1,6 @@
+<a href="{% url 'marcas' %}">Voltar</a>
+<form method="post">
+    {% csrf_token %}
+    <p>Você tem certeza que deseja remover a marca {{marca}}?</p>
+    <input type="submit" value="Deletar">
+</form>

@@ -1,0 +1,18 @@
+<h1>Marcas adicionadas</h1>
+<a href="{% url 'cadastrar_marca' %}">Cadastrar marca</a>
+
+<table>
+    <tr>
+        <th>Marca</th>
+        <th></th>
+    </tr>
+    {% for marca in marcas %}
+    <tr>
+        <td>{{marca}}</td>
+        <td><a href="{% url 'editar_marca' marca.id %}">Editar</a></td>
+        <td><a href="{% url 'remover_marca' marca.id %}">Remover</a></td>
+    </tr>
+    {% empty %}
+        <h3>Você não tem marcas adicionados</h3>
+    {% endfor %}
+</table>
