@@ -40,4 +40,14 @@ urlpatterns = [
          views.EditarItem.as_view(), name="editar_item"),
     path("itens/remover/<int:pk>/",
          views.RemoverItem.as_view(), name="remover_item"),
+
+
+     # CRUD CLIENTES
+    path("clientes/", views.ListaClientes.as_view(), name="clientes"),
+    path("clientes/cadastrar/",
+         views.CadastrarCliente.as_view(), name="cadastrar_cliente"),
+    path("clientes/editar/<int:pk>/",
+         views.EditarCliente.as_view(), name="editar_cliente"),
+    path("clientes/remover/<int:pk>/",
+         views.RemoverCliente.as_view(), name="remover_cliente"),
 ]

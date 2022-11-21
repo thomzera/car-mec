@@ -27,3 +27,13 @@ class Item(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=64)
+    email = models.EmailField()
+    celular = models.CharField(max_length=12)
+    cpf = models.CharField(max_length=12)
+
+    def __str__(self):
+        return self.nome

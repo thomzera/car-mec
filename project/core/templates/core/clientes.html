@@ -1,0 +1,22 @@
+<h1>Clientes adicionados</h1>
+<a href="{% url 'cadastrar_cliente' %}">Cadastrar cliente</a>
+
+<table>
+    <tr>
+        <th>Cliente</th>
+        <th>Celular</th>
+        <th>Email</th>
+        <th>Acoes</th>
+    </tr>
+    {% for cliente in clientes %}
+    <tr>
+        <td>{{cliente}}</td>
+        <td>{{cliente.celular}}</td>
+        <td>{{cliente.email}}</td>
+        <td><a href="{% url 'editar_cliente' cliente.id %}">Editar</a></td>
+        <td><a href="{% url 'remover_cliente' cliente.id %}">Remover</a></td>
+    </tr>
+    {% empty %}
+        <h3>Você não tem clientes adicionados</h3>
+    {% endfor %}
+</table>

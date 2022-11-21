@@ -144,3 +144,35 @@ class RemoverItem(LoginRequiredMixin, DeleteView):
     context_object_name = 'item'
     template_name = 'core/remover_item.html'
     success_url = reverse_lazy('itens')
+
+
+
+# ########## CRUD CLIENTE ###########
+class ListaClientes(LoginRequiredMixin, ListView):
+    model = models.Cliente
+    context_object_name = 'clientes'
+    template_name = 'core/clientes.html'
+
+
+class CadastrarCliente(LoginRequiredMixin, CreateView):
+    model = models.Cliente
+    fields = '__all__'
+    template_name = 'core/cadastrar_cliente.html'
+    success_url = reverse_lazy('clientes')
+
+    def form_valid(self, form):
+        return super(CadastrarCliente, self).form_valid(form)
+
+
+class EditarCliente(LoginRequiredMixin, UpdateView):
+    model = models.Cliente
+    fields = '__all__'
+    template_name = 'core/editar_cliente.html'
+    success_url = reverse_lazy('clientes')
+
+
+class RemoverCliente(LoginRequiredMixin, DeleteView):
+    model = models.Cliente
+    context_object_name = 'cliente'
+    template_name = 'core/remover_cliente.html'
+    success_url = reverse_lazy('clientes')
