@@ -1,0 +1,19 @@
+<h1>Itens adicionados</h1>
+<a href="{% url 'cadastrar_item' %}">Cadastrar item</a>
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th></th>
+    </tr>
+    {% for item in itens %}
+    <tr>
+        <td>{{item}}</td>
+        <td>{{item.preco}}</td>
+        <td><a href="{% url 'editar_item' item.id %}">Editar</a></td>
+        <td><a href="{% url 'remover_item' item.id %}">Remover</a></td>
+    </tr>
+    {% empty %}
+        <h3>Você não tem itens adicionados</h3>
+    {% endfor %}
+</table>

@@ -1,0 +1,8 @@
+<h1>Editar item {{item}}</h1>
+<a href="{% url 'itens' %}">Voltar</a>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Enviar">
+</form>

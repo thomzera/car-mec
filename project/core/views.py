@@ -49,6 +49,7 @@ class RegistroUsuario(FormView):
 # ########## CRUD CARRO ###########
 class ListaCarros(LoginRequiredMixin, ListView):
     model = models.Carro
+    paginate_by = 10
     context_object_name = 'carros'
     template_name = 'core/carros.html'
 
@@ -112,3 +113,34 @@ class RemoverMarca(LoginRequiredMixin, DeleteView):
     context_object_name = 'marca'
     template_name = 'core/remover_marca.html'
     success_url = reverse_lazy('marcas')
+
+
+# ########## CRUD ITEM = PEÇA/MATERIAL ###########
+class ListaItens(LoginRequiredMixin, ListView):
+    model = models.Item
+    context_object_name = 'itens'
+    template_name = 'core/itens.html'
+
+
+class CadastrarItem(LoginRequiredMixin, CreateView):
+    model = models.Item
+    fields = '__all__'
+    template_name = 'core/cadastrar_item.html'
+    success_url = reverse_lazy('itens')
+
+    def form_valid(self, form):
+        return super(CadastrarItem, self).form_valid(form)
+
+
+class EditarItem(LoginRequiredMixin, UpdateView):
+    model = models.Item
+    fields = '__all__'
+    template_name = 'core/editar_item.html'
+    success_url = reverse_lazy('itens')
+
+
+class RemoverItem(LoginRequiredMixin, DeleteView):
+    model = models.Item
+    context_object_name = 'item'
+    template_name = 'core/remover_item.html'
+    success_url = reverse_lazy('itens')

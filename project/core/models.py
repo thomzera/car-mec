@@ -19,3 +19,11 @@ class Carro(models.Model):
 
     class Meta:
         ordering = ['nome']
+
+
+class Item(models.Model):
+    nome = models.CharField(max_length=24)
+    preco = models.DecimalField(decimal_places=2, max_digits=9)
+
+    def __str__(self):
+        return self.nome

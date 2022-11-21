@@ -8,12 +8,33 @@
     </tr>
     {% for carro in carros %}
     <tr>
-        <td>{{carro.nome}}</td> 
+        <td>{{carro.nome}}</td>
         <td><a href="{% url 'ver_carro' carro.id %}">Ver</a></td>
         <td><a href="{% url 'editar_carro' carro.id %}">Editar</a></td>
         <td><a href="{% url 'remover_carro' carro.id %}">Remover</a></td>
     </tr>
     {% empty %}
-        <h3>Você não tem carros adicionados</h3>
+    <h3>Você não tem carros adicionados</h3>
     {% endfor %}
 </table>
+
+<hr>
+
+<!-- paginacao -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; primeira</a>
+        <a href="?page={{ page_obj.previous_page_number }}">voltar</a>
+        {% endif %}
+
+        <span class="current">
+            Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">proxima</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">ultima &raquo;</a>
+        {% endif %}
+    </span>
+</div>

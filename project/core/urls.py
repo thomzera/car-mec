@@ -22,7 +22,7 @@ urlpatterns = [
          views.RemoverCarro.as_view(), name="remover_carro"),
 
 
-    # CRUD CARROS
+    # CRUD MARCAS DE CARROS
     path("marcas/", views.ListaMarcas.as_view(), name="marcas"),
     path("marcas/cadastrar/",
          views.CadastrarMarca.as_view(), name="cadastrar_marca"),
@@ -30,4 +30,14 @@ urlpatterns = [
          views.EditarMarca.as_view(), name="editar_marca"),
     path("marcas/remover/<int:pk>/",
          views.RemoverMarca.as_view(), name="remover_marca"),
+
+
+     # CRUD ITENS
+    path("itens/", views.ListaItens.as_view(), name="itens"),
+    path("itens/cadastrar/",
+         views.CadastrarItem.as_view(), name="cadastrar_item"),
+    path("itens/editar/<int:pk>/",
+         views.EditarItem.as_view(), name="editar_item"),
+    path("itens/remover/<int:pk>/",
+         views.RemoverItem.as_view(), name="remover_item"),
 ]
