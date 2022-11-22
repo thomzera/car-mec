@@ -1,0 +1,20 @@
+<h1>Os's cadastradas</h1>
+<a href="{% url 'cadastrar_os' %}">Cadastrar os</a>
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th></th>
+    </tr>
+    {% for os in oss %}
+    <tr>
+        <td>{{os.id}}</td>
+        <td>{{os.cliente}}</td>
+        <td>{{os.status}}</td>
+        <td><a href="{% url 'editar_os' os.id %}">Editar</a></td>
+        {% comment %} <td><a href="{% url 'remover_item' item.id %}">Remover</a></td> {% endcomment %}
+    </tr>
+    {% empty %}
+        <h3>Você não tem os's cadastradas</h3>
+    {% endfor %}
+</table>

@@ -46,8 +46,17 @@ urlpatterns = [
     path("clientes/", views.ListaClientes.as_view(), name="clientes"),
     path("clientes/cadastrar/",
          views.CadastrarCliente.as_view(), name="cadastrar_cliente"),
+     path("clientes/ver/<int:pk>/", views.VerCliente.as_view(), name="ver_cliente"),
     path("clientes/editar/<int:pk>/",
          views.EditarCliente.as_view(), name="editar_cliente"),
     path("clientes/remover/<int:pk>/",
          views.RemoverCliente.as_view(), name="remover_cliente"),
+
+
+     # ORDEM SERVICO
+     path("os/", views.ListaOs.as_view(), name="oss"),
+     path("os/cadastrar/",
+         views.CadastrarOs.as_view(), name="cadastrar_os"),
+     path("os/editar/<int:pk>/",
+         views.EditarOs.as_view(), name="editar_os"),
 ]

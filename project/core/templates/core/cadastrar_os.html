@@ -1,0 +1,8 @@
+<h1>Cadastro de Os</h1>
+<a href="{% url 'oss' %}">Voltar</a>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Enviar">
+</form>
