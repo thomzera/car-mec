@@ -14,13 +14,13 @@ from . import models
 
 # Create your views here.
 def index(request):
-    return render(request, 'core/index.html')
+    return render(request, 'core/pages/index.html')
 
 # ########## LOGIN & REGISTER ###########
 
 
 class Login(LoginView):
-    template_name = 'core/login.html'
+    template_name = 'core/global/login.html'
     fields = '__all__'
     redirect_authenticated_user = True
 
@@ -29,7 +29,7 @@ class Login(LoginView):
 
 
 class RegistroUsuario(FormView):
-    template_name = 'core/registrar.html'
+    template_name = 'core/global/registrar.html'
     form_class = UserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('index')
@@ -51,13 +51,13 @@ class ListaCarros(LoginRequiredMixin, ListView):
     model = models.Carro
     paginate_by = 10
     context_object_name = 'carros'
-    template_name = 'core/carros.html'
+    template_name = 'core/pages/carros.html'
 
 
 class CadastrarCarro(LoginRequiredMixin, CreateView):
     model = models.Carro
     fields = '__all__'
-    template_name = 'core/cadastrar_carro.html'
+    template_name = 'core/pages/cadastros/cadastrar_carro.html'
     success_url = reverse_lazy('carros')
 
     def form_valid(self, form):
@@ -67,20 +67,20 @@ class CadastrarCarro(LoginRequiredMixin, CreateView):
 class VerCarro(LoginRequiredMixin, DetailView):
     model = models.Carro
     context_object_name = 'carro'
-    template_name = 'core/carro.html'
+    template_name = 'core/pages/carro.html'
 
 
 class EditarCarro(LoginRequiredMixin, UpdateView):
     model = models.Carro
     fields = '__all__'
-    template_name = 'core/editar_carro.html'
+    template_name = 'core/pages/cadastros/editar_carro.html'
     success_url = reverse_lazy('carros')
 
 
 class RemoverCarro(LoginRequiredMixin, DeleteView):
     model = models.Carro
     context_object_name = 'carro'
-    template_name = 'core/remover_carro.html'
+    template_name = 'core/pages/cadastros/remover_carro.html'
     success_url = reverse_lazy('carros')
 
 
@@ -88,13 +88,13 @@ class RemoverCarro(LoginRequiredMixin, DeleteView):
 class ListaMarcas(LoginRequiredMixin, ListView):
     model = models.MarcaCarro
     context_object_name = 'marcas'
-    template_name = 'core/marcas.html'
+    template_name = 'core/pages/marcas.html'
 
 
 class CadastrarMarca(LoginRequiredMixin, CreateView):
     model = models.MarcaCarro
     fields = '__all__'
-    template_name = 'core/cadastrar_marca.html'
+    template_name = 'core/pages/cadastros/cadastrar_marca.html'
     success_url = reverse_lazy('marcas')
 
     def form_valid(self, form):
@@ -104,14 +104,14 @@ class CadastrarMarca(LoginRequiredMixin, CreateView):
 class EditarMarca(LoginRequiredMixin, UpdateView):
     model = models.MarcaCarro
     fields = '__all__'
-    template_name = 'core/editar_marca.html'
+    template_name = 'core/pages/cadastros/editar_marca.html'
     success_url = reverse_lazy('marcas')
 
 
 class RemoverMarca(LoginRequiredMixin, DeleteView):
     model = models.MarcaCarro
     context_object_name = 'marca'
-    template_name = 'core/remover_marca.html'
+    template_name = 'core/pages/cadastros/remover_marca.html'
     success_url = reverse_lazy('marcas')
 
 
@@ -119,13 +119,13 @@ class RemoverMarca(LoginRequiredMixin, DeleteView):
 class ListaItens(LoginRequiredMixin, ListView):
     model = models.Item
     context_object_name = 'itens'
-    template_name = 'core/itens.html'
+    template_name = 'core/pages/itens.html'
 
 
 class CadastrarItem(LoginRequiredMixin, CreateView):
     model = models.Item
     fields = '__all__'
-    template_name = 'core/cadastrar_item.html'
+    template_name = 'core/pages/cadastros/cadastrar_item.html'
     success_url = reverse_lazy('itens')
 
     def form_valid(self, form):
@@ -135,14 +135,14 @@ class CadastrarItem(LoginRequiredMixin, CreateView):
 class EditarItem(LoginRequiredMixin, UpdateView):
     model = models.Item
     fields = '__all__'
-    template_name = 'core/editar_item.html'
+    template_name = 'core/pages/cadastros/editar_item.html'
     success_url = reverse_lazy('itens')
 
 
 class RemoverItem(LoginRequiredMixin, DeleteView):
     model = models.Item
     context_object_name = 'item'
-    template_name = 'core/remover_item.html'
+    template_name = 'core/pages/cadastros/remover_item.html'
     success_url = reverse_lazy('itens')
 
 
@@ -151,13 +151,13 @@ class RemoverItem(LoginRequiredMixin, DeleteView):
 class ListaClientes(LoginRequiredMixin, ListView):
     model = models.Cliente
     context_object_name = 'clientes'
-    template_name = 'core/clientes.html'
+    template_name = 'core/pages/clientes.html'
 
 
 class CadastrarCliente(LoginRequiredMixin, CreateView):
     model = models.Cliente
     fields = '__all__'
-    template_name = 'core/cadastrar_cliente.html'
+    template_name = 'core/pages/cadastros/cadastrar_cliente.html'
     success_url = reverse_lazy('clientes')
 
     def form_valid(self, form):
@@ -166,32 +166,32 @@ class CadastrarCliente(LoginRequiredMixin, CreateView):
 class VerCliente(LoginRequiredMixin, DetailView):
     model = models.Cliente
     context_object_name = 'cliente'
-    template_name = 'core/cliente.html'
+    template_name = 'core/pages/cliente.html'
 
 
 class EditarCliente(LoginRequiredMixin, UpdateView):
     model = models.Cliente
     fields = '__all__'
-    template_name = 'core/editar_cliente.html'
+    template_name = 'core/pages/cadastros/editar_cliente.html'
     success_url = reverse_lazy('clientes')
 
 
 class RemoverCliente(LoginRequiredMixin, DeleteView):
     model = models.Cliente
     context_object_name = 'cliente'
-    template_name = 'core/remover_cliente.html'
+    template_name = 'core/pages/cadastros/remover_cliente.html'
     success_url = reverse_lazy('clientes')
 
 # ########## ORDEM DE SERVICO ###########
 class ListaOs(LoginRequiredMixin, ListView):
     model = models.OrdemServico
     context_object_name = 'oss'
-    template_name = 'core/oss.html'
+    template_name = 'core/pages/oss.html'
 
 class CadastrarOs(LoginRequiredMixin, CreateView):
     model = models.OrdemServico
     fields = '__all__'
-    template_name = 'core/cadastrar_os.html'
+    template_name = 'core/pages/cadastros/cadastrar_os.html'
     success_url = reverse_lazy('oss')
 
     def form_valid(self, form):
@@ -200,5 +200,5 @@ class CadastrarOs(LoginRequiredMixin, CreateView):
 class EditarOs(LoginRequiredMixin, UpdateView):
     model = models.OrdemServico
     fields = '__all__'
-    template_name = 'core/editar_os.html'
+    template_name = 'core/pages/cadastros/editar_os.html'
     success_url = reverse_lazy('oss')
