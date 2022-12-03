@@ -53,3 +53,5 @@ class OrdemServico(models.Model):
     observacao = models.TextField()
     itens = models.ForeignKey(Item, on_delete=models.CASCADE)
     mao_obra = models.DecimalField(decimal_places=2, max_digits=9)
+    ts_created = models.DateTimeField(auto_now_add=True)
+    ts_updated = models.DateTimeField(auto_now=True)
