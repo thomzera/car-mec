@@ -1,3 +1,11 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Carro {{carro}}{% endblock title %}
+
+{% block content %}
+
 <h1>Carro: {{carro}}</h1>
 <h1>Marca: {{carro.marca}}</h1>
 <h1>Ano: {{carro.ano}}</h1>
+
+{% endblock content %}

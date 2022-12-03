@@ -1,6 +1,15 @@
+
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Remover Cliente{% endblock title %}
+
+{% block content %}
+
 <a href="{% url 'clientes' %}">Voltar</a>
 <form method="post">
     {% csrf_token %}
     <p>Você tem certeza que deseja remover o cliente {{cliente}}?</p>
     <input type="submit" value="Deletar">
 </form>
+
+{% endblock content %}

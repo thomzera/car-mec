@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Editar OS{% endblock title %}
+
+{% block content %}
+
 <h1>Editar Os {{os.id}}</h1>
 <a href="{% url 'oss' %}">Voltar</a>
 
@@ -6,3 +12,5 @@
     {{form.as_p}}
     <input type="submit" value="Enviar">
 </form>
+
+{% endblock content %}

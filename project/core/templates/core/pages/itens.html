@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Itens{% endblock title %}
+
+{% block content %}
+
 <h1>Itens adicionados</h1>
 <a href="{% url 'cadastrar_item' %}">Cadastrar item</a>
 
@@ -17,3 +23,5 @@
         <h3>Você não tem itens adicionados</h3>
     {% endfor %}
 </table>
+
+{% endblock content %}

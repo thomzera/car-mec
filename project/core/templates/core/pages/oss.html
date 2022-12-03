@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}OS'S{% endblock title %}
+
+{% block content %}
+
 <h1>Os's cadastradas</h1>
 <a href="{% url 'cadastrar_os' %}">Cadastrar os</a>
 
@@ -18,3 +24,5 @@
         <h3>Você não tem os's cadastradas</h3>
     {% endfor %}
 </table>
+
+{% endblock content %}

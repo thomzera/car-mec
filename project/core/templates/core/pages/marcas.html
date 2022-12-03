@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Marcas{% endblock title %}
+
+{% block content %}
+
 <h1>Marcas adicionadas</h1>
 <a href="{% url 'cadastrar_marca' %}">Cadastrar marca</a>
 
@@ -16,3 +22,5 @@
         <h3>Você não tem marcas adicionados</h3>
     {% endfor %}
 </table>
+
+{% endblock content %}

@@ -1,3 +1,12 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Cliente {{cliente}}{% endblock title %}
+
+{% block content %}
+
+<h1>Clientes adicionados</h1>
+<a href="{% url 'cadastrar_cliente' %}">Cadastrar cliente</a>
+
 <h1>Nome: {{cliente}}</h1>
 <h1>Email: {{cliente.email}}</h1>
 <h1>Celular: {{cliente.celular}}</h1>
@@ -5,3 +14,6 @@
 <hr>
 
 listagem de todas as os's relacionadas a esse cliente
+
+
+{% endblock content %}

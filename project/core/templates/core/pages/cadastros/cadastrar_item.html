@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Cadastrar Item{% endblock title %}
+
+{% block content %}
+
 <h1>Cadastro de Itens</h1>
 <a href="{% url 'itens' %}">Voltar</a>
 
@@ -6,3 +12,5 @@
     {{form.as_p}}
     <input type="submit" value="Enviar">
 </form>
+
+{% endblock content %}

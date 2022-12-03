@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Início{% endblock title %}
+
+{% block content %}
+
 {% if request.user.is_authenticated %}
     <p>{{request.user}}</p>
     <p><a href="{% url 'logout' %}">Logout</a></p>
@@ -5,11 +11,5 @@
     <p><a href="{% url 'login' %}">Login</a></p>
 {% endif %}
 
-<hr>
-projeto oficina mecanica.
 
-<p><a href="{% url 'carros' %}">carros</a></p>
-<p><a href="{% url 'marcas' %}">marcas</a></p>
-<p><a href="{% url 'itens' %}">itens</a></p>
-<p><a href="{% url 'clientes' %}">clientes</a></p>
-<p><a href="{% url 'oss' %}">os's</a></p>
+{% endblock content %}

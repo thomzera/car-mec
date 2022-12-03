@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Clientes{% endblock title %}
+
+{% block content %}
+
 <h1>Clientes adicionados</h1>
 <a href="{% url 'cadastrar_cliente' %}">Cadastrar cliente</a>
 
@@ -21,3 +27,5 @@
         <h3>Você não tem clientes adicionados</h3>
     {% endfor %}
 </table>
+
+{% endblock content %}

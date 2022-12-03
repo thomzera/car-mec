@@ -1,3 +1,9 @@
+{% extends 'core/partials/base.html' %}
+
+{% block title %}Editar Carro{% endblock title %}
+
+{% block content %}
+
 <h1>Editar Carro {{carro}}</h1>
 <a href="{% url 'carros' %}">Voltar</a>
 
@@ -6,3 +12,5 @@
     {{form.as_p}}
     <input type="submit" value="Enviar">
 </form>
+
+{% endblock content %}
