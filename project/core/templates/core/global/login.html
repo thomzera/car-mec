@@ -27,7 +27,7 @@
                 <form action="" method="POST" class="form w-75">
 
                     {% csrf_token %}
-                    {% bootstrap_label "Usuário" label_for="id_username" %}
+                    {% bootstrap_label "Email ou usuário" label_for="id_username" %}
                     {% bootstrap_field form.username show_label=False%}
 
                     {% bootstrap_label "Senha" label_for="id_password" %}
