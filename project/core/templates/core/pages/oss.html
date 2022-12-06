@@ -7,6 +7,24 @@
 <h1>Os's cadastradas</h1>
 <a href="{% url 'cadastrar_os' %}">Cadastrar os</a>
 
+<hr>
+
+<form action="?" method="GET">
+    <label for="status">Filtrar</label>
+    <select name="status" id="status">
+        <option value="ATIVO">ATIVO</option>
+        <option value="AG PGTO">AG PGTO</option>
+        <option value="CANCELADO">CANCELADO</option>
+        <option value="FINALIZADO">FINALIZADO</option>
+        <option value="PAUSADO">PAUSADO</option>
+    </select>
+
+    <button type="submit" class="btn btn-success">Buscar</button>
+    <a href="{% url 'oss' %}" class="btn btn-light">Limpar</a>
+</form>
+
+<hr>
+
 <table>
     <tr>
         <th>id</th>
@@ -15,7 +33,7 @@
         <th>criada em</th>
         <th>acoes</th>
     </tr>
-    {% for os in oss %}
+    {% for os in object_list %}
     <tr>
         <td>{{os.id}}</td>
         <td>{{os.cliente}}</td>
@@ -28,5 +46,36 @@
         <h3>Você não tem os's cadastradas</h3>
     {% endfor %}
 </table>
+
+<!-- paginacao -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+
+            {% if request.GET.status %}
+                <a href="?page=1&status={{request.GET.status}}">&laquo; primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}&status={{request.GET.status}}">voltar</a>
+            {% else %}
+                <a href="?page=1">&laquo; primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}">voltar</a>
+            {% endif %}
+
+        {% endif %}
+
+        <span class="current">
+            Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            {% if request.GET.status %}
+                <a href="?page={{ page_obj.next_page_number }}&status={{request.GET.status}}">proxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&status={{request.GET.status}}">ultima &raquo;</a>
+            {% else %}
+                <a href="?page={{ page_obj.next_page_number }}">proxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">ultima &raquo;</a>
+            {% endif %}
+        {% endif %}
+    </span>
+</div>
 
 {% endblock content %}

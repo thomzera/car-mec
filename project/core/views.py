@@ -146,7 +146,6 @@ class RemoverItem(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('itens')
 
 
-
 # ########## CRUD CLIENTE ###########
 class ListaClientes(LoginRequiredMixin, ListView):
     model = models.Cliente
@@ -162,6 +161,7 @@ class CadastrarCliente(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         return super(CadastrarCliente, self).form_valid(form)
+
 
 class VerCliente(LoginRequiredMixin, DetailView):
     model = models.Cliente
@@ -183,10 +183,25 @@ class RemoverCliente(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('clientes')
 
 # ########## ORDEM DE SERVICO ###########
+
+
 class ListaOs(LoginRequiredMixin, ListView):
     model = models.OrdemServico
-    context_object_name = 'oss'
     template_name = 'core/pages/oss.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        status_name = self.request.GET.get('status')
+
+        if status_name:
+            oss = models.OrdemServico.objects.filter(
+                status=status_name
+            )
+        else:
+            oss = models.OrdemServico.objects.all()
+
+        return oss
+
 
 class CadastrarOs(LoginRequiredMixin, CreateView):
     model = models.OrdemServico
@@ -196,6 +211,7 @@ class CadastrarOs(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         return super(CadastrarOs, self).form_valid(form)
+
 
 class EditarOs(LoginRequiredMixin, UpdateView):
     model = models.OrdemServico
