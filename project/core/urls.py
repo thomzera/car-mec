@@ -59,4 +59,7 @@ urlpatterns = [
          views.CadastrarOs.as_view(), name="cadastrar_os"),
      path("os/editar/<int:pk>/",
          views.EditarOs.as_view(), name="editar_os"),
+
+     # FINANCEIRO
+     path("financeiro/", views.Financeiro.as_view(), name="financeiro")
 ]

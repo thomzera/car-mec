@@ -2,8 +2,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.db.models import Sum
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
@@ -168,6 +170,12 @@ class VerCliente(LoginRequiredMixin, DetailView):
     context_object_name = 'cliente'
     template_name = 'core/pages/cliente.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["historico_os"] = models.OrdemServico.objects.filter(
+            cliente=context['object'].id)
+        return context
+
 
 class EditarCliente(LoginRequiredMixin, UpdateView):
     model = models.Cliente
@@ -188,7 +196,7 @@ class RemoverCliente(LoginRequiredMixin, DeleteView):
 class ListaOs(LoginRequiredMixin, ListView):
     model = models.OrdemServico
     template_name = 'core/pages/oss.html'
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         status_name = self.request.GET.get('status')
@@ -198,7 +206,7 @@ class ListaOs(LoginRequiredMixin, ListView):
                 status=status_name
             )
         else:
-            oss = models.OrdemServico.objects.all()
+            oss = models.OrdemServico.objects.all().order_by('-ts_created')
 
         return oss
 
@@ -218,3 +226,21 @@ class EditarOs(LoginRequiredMixin, UpdateView):
     fields = '__all__'
     template_name = 'core/pages/cadastros/editar_os.html'
     success_url = reverse_lazy('oss')
+
+
+# ########## FINANCEIRO ###########
+class Financeiro(LoginRequiredMixin, View):
+
+    def get(self, request):
+        qs_finalizado = models.OrdemServico.objects.filter(
+            status='FINALIZADO'
+        ).aggregate(Sum('mao_obra'))['mao_obra__sum']
+        qs_receber = models.OrdemServico.objects.filter(
+            status='AG PGTO'
+        ).aggregate(Sum('mao_obra'))['mao_obra__sum']
+
+        context = {
+            'finalizado': qs_finalizado,
+            'receber': qs_receber,
+        }
+        return render(request, 'core/pages/financeiro.html', context)

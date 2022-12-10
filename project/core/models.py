@@ -48,7 +48,8 @@ class OrdemServico(models.Model):
         ('FINALIZADO', 'Finalizado'),
         ('PAUSADO', 'Pausado'),
     ]
-    status = models.CharField(max_length=10, choices=status_choices, default='ATIVO')
+    status = models.CharField(max_length=10, choices=status_choices,
+                              default='ATIVO')
     descricao = models.TextField()
     observacao = models.TextField()
     itens = models.ForeignKey(Item, on_delete=models.CASCADE)

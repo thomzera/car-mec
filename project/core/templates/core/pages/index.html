@@ -4,12 +4,4 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
-    <p>{{request.user}}</p>
-    <p><a href="{% url 'logout' %}">Logout</a></p>
-{% else %}
-    <p><a href="{% url 'login' %}">Login</a></p>
-{% endif %}
-
-
 {% endblock content %}

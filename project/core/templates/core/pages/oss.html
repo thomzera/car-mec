@@ -36,7 +36,7 @@
     {% for os in object_list %}
     <tr>
         <td>{{os.id}}</td>
-        <td>{{os.cliente}}</td>
+        <td><a href="{% url 'ver_cliente' os.cliente.id %}">{{os.cliente}}</a></td>
         <td>{{os.status}}</td>
         <td>{{os.ts_created|date:"d/m/y"}}</td>
         <td><a href="{% url 'editar_os' os.id %}">Editar</a></td>
